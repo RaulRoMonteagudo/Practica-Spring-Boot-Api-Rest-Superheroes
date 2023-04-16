@@ -16,6 +16,9 @@ import com.rrm.superhero.dto.SuperheroDTO;
 import com.rrm.superhero.service.SuperheroService;
 import com.rrm.superhero.utils.Constants;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,7 +28,11 @@ public class SuperheroController {
 
 	@Autowired
 	SuperheroService service;
-	
+	@Operation(description = "Get all superheroes or get all superheroes with specified text")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "OK"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL ERROR")
+	})
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<SuperheroDTO>> getAllCompanies(@RequestParam(required = false) String text) {
     	
@@ -42,6 +49,11 @@ public class SuperheroController {
         return response;
     }
 	
+	@Operation(description = "Get a superhero by id")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "OK"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL ERROR")
+	})
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<SuperheroDTO> getSuperhero(@PathVariable("id") Long id) {
     	
@@ -52,6 +64,11 @@ public class SuperheroController {
     	return response;
     }
     
+	@Operation(description = "Update a superhero data")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "OK"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL ERROR")
+	})
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<SuperheroDTO> updateSuperhero(@RequestBody SuperheroDTO superheroDTO) {
     	
@@ -62,6 +79,11 @@ public class SuperheroController {
     	return response;
     }
     
+	@Operation(description = "Delete a superhero by id")
+	@ApiResponses(value = { 
+			@ApiResponse(responseCode = "200", description = "OK"),
+			@ApiResponse(responseCode = "500", description = "INTERNAL ERROR")
+	})
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<HttpStatus> deleteSuperhero(@PathVariable("id") Long id) {
     	
