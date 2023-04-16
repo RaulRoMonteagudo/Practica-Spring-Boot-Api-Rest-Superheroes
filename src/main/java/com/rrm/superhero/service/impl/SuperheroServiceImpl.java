@@ -90,11 +90,19 @@ public class SuperheroServiceImpl implements SuperheroService{
 		log.info(Constants.SUPERHERO_SERVICE_LOG + "update()");
 		log.debug("SuperheroDTO: " + superheroDTO.toString());
 		
-		Superhero superhero = new Superhero(superheroDTO.getId(), superheroDTO.getName());
-		superhero = repository.save(superhero);
-		log.debug("Superhero: " + superheroDTO.toString());
+		Superhero superhero = repository.findById(superheroDTO.getId()).orElseThrow();
+		SuperheroDTO superheroDTOUpdated = new SuperheroDTO();
 		
-		SuperheroDTO superheroDTOUpdated = new SuperheroDTO(superhero.getId(), superhero.getName());
+		if(superhero != null) {
+			superhero.setId(superheroDTO.getId());
+			superhero.setName(superheroDTO.getName());
+			superhero = repository.save(superhero);
+			repository.save(superhero);
+			
+			log.debug("Superhero: " + superheroDTO.toString());
+			
+			superheroDTOUpdated = new SuperheroDTO(superhero.getId(), superhero.getName());
+		}
 
 		log.info(Constants.END_METHOD_LOG);
 		
