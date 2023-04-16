@@ -10,4 +10,6 @@ import com.rrm.superhero.entity.Superhero;
 @Repository
 public interface SuperheroRepository extends JpaRepository<Superhero, Long>{
 
+	List<Superhero> findByNameContaining(String name);
+	
 }
