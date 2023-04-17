@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.rrm.superhero.dto.SuperheroDTO;
 import com.rrm.superhero.entity.Superhero;
+import com.rrm.superhero.exception.SuperheroNotFoundException;
 import com.rrm.superhero.repository.SuperheroRepository;
 import com.rrm.superhero.service.SuperheroService;
 import com.rrm.superhero.utils.Constants;
@@ -57,6 +58,7 @@ public class SuperheroServiceImpl implements SuperheroService{
 	    } else {
 	    	log.debug("Superhero not found");
 	    	superheroDTO = null;
+	    	throw new SuperheroNotFoundException(Constants.SUPERHERO_ID_NOT_FOUND + id);
 	    }
 	    
 	    log.info(Constants.END_METHOD_LOG);
@@ -90,7 +92,8 @@ public class SuperheroServiceImpl implements SuperheroService{
 		log.info(Constants.SUPERHERO_SERVICE_LOG + "update()");
 		log.debug("SuperheroDTO: " + superheroDTO.toString());
 		
-		Superhero superhero = repository.findById(superheroDTO.getId()).orElseThrow();
+		Superhero superhero = repository.findById(superheroDTO.getId()).orElseThrow(
+	            () -> new SuperheroNotFoundException(Constants.SUPERHERO_ID_NOT_FOUND + superheroDTO.getId()));
 		SuperheroDTO superheroDTOUpdated = new SuperheroDTO();
 		
 		if(superhero != null) {
@@ -102,6 +105,8 @@ public class SuperheroServiceImpl implements SuperheroService{
 			log.debug("Superhero: " + superheroDTO.toString());
 			
 			superheroDTOUpdated = new SuperheroDTO(superhero.getId(), superhero.getName());
+		} else {
+			throw new SuperheroNotFoundException(Constants.SUPERHERO_ID_NOT_FOUND + superheroDTO.getId());
 		}
 
 		log.info(Constants.END_METHOD_LOG);
