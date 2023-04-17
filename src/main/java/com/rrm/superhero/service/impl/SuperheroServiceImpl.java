@@ -70,7 +70,7 @@ public class SuperheroServiceImpl implements SuperheroService{
 		log.info(Constants.INIT_METHOD_LOG);
 		log.info(Constants.SUPERHERO_SERVICE_LOG + "findByContainingText(), text: " + text);
 		
-		List<Superhero> superHeroList = repository.findByNameContaining(text);
+		List<Superhero> superHeroList = repository.findByNameContainingIgnoreCase(text);
 		
 		log.debug("repository.findByNameContaining(): " + superHeroList.toString());
 		
