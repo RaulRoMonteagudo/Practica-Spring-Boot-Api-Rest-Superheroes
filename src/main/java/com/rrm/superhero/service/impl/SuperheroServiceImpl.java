@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.rrm.superhero.dto.SuperheroDTO;
@@ -23,6 +24,7 @@ public class SuperheroServiceImpl implements SuperheroService{
 	@Autowired
 	SuperheroRepository repository;
 
+	@Cacheable("superheroes")
 	@Override
 	public List<SuperheroDTO> findAll() {
 		
@@ -42,6 +44,7 @@ public class SuperheroServiceImpl implements SuperheroService{
 		return superheroDTOList;
 	}
 
+	@Cacheable("superheroById")
 	@Override
 	public SuperheroDTO findById(Long id) {
 		
@@ -66,6 +69,7 @@ public class SuperheroServiceImpl implements SuperheroService{
 		return superheroDTO;
 	}
 
+	@Cacheable("superheroesByContainingText")
 	@Override
 	public List<SuperheroDTO> findByContainingText(String text) {
 		
