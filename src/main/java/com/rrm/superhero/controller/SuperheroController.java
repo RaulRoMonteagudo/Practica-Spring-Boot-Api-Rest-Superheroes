@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rrm.superhero.annotations.MeasureTime;
 import com.rrm.superhero.dto.SuperheroDTO;
 import com.rrm.superhero.service.SuperheroService;
 import com.rrm.superhero.utils.Constants;
@@ -28,6 +29,8 @@ public class SuperheroController {
 
 	@Autowired
 	SuperheroService service;
+	
+	@MeasureTime
 	@Operation(description = "Get all superheroes or get all superheroes with specified text")
 	@ApiResponses(value = { 
 			@ApiResponse(responseCode = "200", description = "OK"),
@@ -49,6 +52,7 @@ public class SuperheroController {
         return response;
     }
 	
+	@MeasureTime
 	@Operation(description = "Get a superhero by id")
 	@ApiResponses(value = { 
 			@ApiResponse(responseCode = "200", description = "OK"),
@@ -64,6 +68,7 @@ public class SuperheroController {
     	return response;
     }
     
+	@MeasureTime
 	@Operation(description = "Update a superhero data")
 	@ApiResponses(value = { 
 			@ApiResponse(responseCode = "200", description = "OK"),
@@ -79,6 +84,7 @@ public class SuperheroController {
     	return response;
     }
     
+	@MeasureTime
 	@Operation(description = "Delete a superhero by id")
 	@ApiResponses(value = { 
 			@ApiResponse(responseCode = "200", description = "OK"),
