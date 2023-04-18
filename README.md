@@ -24,8 +24,10 @@ Aplicación utilizando Spring Boot 2 y Java 11. API que permite hacer un manteni
 
 ## API
 
-Usuario/contraseña disponibles para probar: user/user, admin/admin
-Swagger: http://localhost:8080/swagger-ui.html
+* Usuario/contraseña disponibles para probar:
+	*  user/user
+	* admin/admin
+* Swagger: http://localhost:8080/swagger-ui.html
 
 #### /superhero
 * `GET` : Recupera todos los súper héroes.
