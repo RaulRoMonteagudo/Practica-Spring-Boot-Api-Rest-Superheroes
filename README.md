@@ -44,6 +44,16 @@ Aplicación utilizando Spring Boot 2 y Java 11. API que permite hacer un manteni
 #### /cache?cacheName=XXXXXX
 * `GET` : Borra la caché especificada por parámetro.
 
+## Maven
+```bash
+# Compilar
+mvn clean install
+```
+```bash
+# Ejecutar aplicación
+mvn spring-boot:run
+```
+
 ## Docker
 ```bash
 # Construir contenedor
