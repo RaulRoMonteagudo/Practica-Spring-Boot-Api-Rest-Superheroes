@@ -5,21 +5,21 @@ Aplicación utilizando Spring Boot 2 y Java 11. API que permite hacer un manteni
 
 # ¿Qué permite este mantenimiento?
 
-• Consultar todos los súper héroes. 
-• Consultar un único súper héroe por id. 
-• Consultar todos los súper héroes que contienen, en su nombre, el valor de un parámetro enviado en la petición. Por ejemplo, si enviamos “man” devolverá “Spiderman”, “Superman”, “Manolito el fuerte”, etc. 
-• Modificar un súper héroe. 
-• Eliminar un súper héroe. 
-• Test unitarios.
-• Los súper héroes se guardan en una base de datos H2 en memoria.
-• Jpa 
-• Anotación personalizada que sirve para medir cuánto tarda en ejecutarse una petición.
-• Gestión centralizada de excepciones. 
-• Test de integración. 
-• Aplicación dockerizada. 
-• Poder cachear peticiones. 
-• Documentación de la API. 
-• Seguridad del API.
+* Consultar todos los súper héroes. 
+* Consultar un único súper héroe por id. 
+* Consultar todos los súper héroes que contienen, en su nombre, el valor de un parámetro enviado en la petición. Por ejemplo, si enviamos “man” devolverá “Spiderman”, “Superman”, “Manolito el fuerte”, etc. 
+* Modificar un súper héroe. 
+* Eliminar un súper héroe. 
+* Test unitarios.
+* Los súper héroes se guardan en una base de datos H2 en memoria.
+* Jpa 
+* Anotación personalizada que sirve para medir cuánto tarda en ejecutarse una petición.
+* Gestión centralizada de excepciones. 
+* Test de integración. 
+* Aplicación dockerizada. 
+* Poder cachear peticiones. 
+* Documentación de la API. 
+* Seguridad del API.
 
 
 ## API
