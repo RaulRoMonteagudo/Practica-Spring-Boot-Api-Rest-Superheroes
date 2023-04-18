@@ -21,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.rrm.superhero.dto.SuperheroDTO;
 import com.rrm.superhero.entity.Superhero;
 import com.rrm.superhero.repository.SuperheroRepository;
+import com.rrm.superhero.service.impl.CacheServiceImpl;
 import com.rrm.superhero.service.impl.SuperheroServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,6 +29,9 @@ public class SuperheroServiceTest {
 
     @Mock
     private SuperheroRepository repository;
+    
+    @Mock
+    private CacheServiceImpl cacheService;
 
     @InjectMocks
     private SuperheroServiceImpl service;
@@ -109,6 +113,7 @@ public class SuperheroServiceTest {
     	
     	when(repository.findById(superheroDTO.getId())).thenReturn(Optional.of(superhero));
     	when(repository.save(superhero)).thenReturn(superhero);
+    	doNothing().when(cacheService).clearCache("");
 
 
         SuperheroDTO superheroUpdated = service.update(superheroDTO);
@@ -122,6 +127,7 @@ public class SuperheroServiceTest {
     	Long superheroId = superheroList.get(0).getId();
     	
     	doNothing().when(repository).deleteById(superheroId);
+    	doNothing().when(cacheService).clearCache("");
 
         service.delete(superheroId);
         
