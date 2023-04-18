@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,9 @@ public class SuperheroServiceImpl implements SuperheroService{
 	
 	@Autowired
 	SuperheroRepository repository;
+	
+	@Autowired
+	CacheServiceImpl cacheService;
 
 	@Cacheable("superheroes")
 	@Override
@@ -113,6 +117,8 @@ public class SuperheroServiceImpl implements SuperheroService{
 			throw new SuperheroNotFoundException(Constants.SUPERHERO_ID_NOT_FOUND + superheroDTO.getId());
 		}
 
+		cacheService.clearCache("");
+		
 		log.info(Constants.END_METHOD_LOG);
 		
 		return superheroDTOUpdated;
@@ -125,6 +131,8 @@ public class SuperheroServiceImpl implements SuperheroService{
 		log.info(Constants.SUPERHERO_SERVICE_LOG + "delete(), id: " + id);
 		
 		repository.deleteById(id);
+		
+		cacheService.clearCache("");
 		
 		log.info(Constants.END_METHOD_LOG);
 	}
